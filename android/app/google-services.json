@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "572587422437",
+    "firebase_url": "https://election-75bfc-default-rtdb.firebaseio.com",
+    "project_id": "election-75bfc",
+    "storage_bucket": "election-75bfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572587422437:android:37970c9b073850669f9a0c",
+        "android_client_info": {
+          "package_name": "com.example.election"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMLZFXfivU6Vp5o5H8uHcB0vao1X6hG64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
