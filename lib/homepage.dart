@@ -90,7 +90,7 @@ class _HomepageState extends State<Homepage> {
               child: SingleChildScrollView(
                 child: Text(
                   "$name\n$vname",
-                  style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
