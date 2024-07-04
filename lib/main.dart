@@ -138,79 +138,68 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Center(child: Text("ELECTION RESULTS", style: TextStyle(color: Colors.white, fontSize: 30))),
         backgroundColor: Colors.orangeAccent,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: List.generate(4, (index) {
-                      return tile(names[index], votes[index], imgs[index],vicenames[index]);
-                    }),
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    children: List.generate(3, (index) {
-                      return tile(names[index + 4], votes[index + 4], imgs[index + 4],vicenames[index+4]);
-                    }),
-                  ),
-                ),
-              ],
+      body: ListView(
+        children:[ Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+             Column(
+              children: List.generate(7, (index) {
+                return tile(names[index], votes[index], imgs[index],vicenames[index]);
+              }),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 100,
-              decoration: BoxDecoration(
-                color: Colors.orangeAccent,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20),
+
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Colors.orangeAccent,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text("Total Votes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                            Text("$totalVotes", style: TextStyle(fontSize: 45, color: Colors.blueGrey)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Flexible(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text("Total Votes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                          Text("$totalVotes", style: TextStyle(fontSize: 45, color: Colors.blueGrey)),
+                          Text("Voted", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text("$voted", style: TextStyle(fontSize: 45, color: Colors.blueGrey)),
                         ],
                       ),
                     ),
-                  ),
-                  Flexible(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text("Voted", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text("$voted", style: TextStyle(fontSize: 45, color: Colors.blueGrey)),
-                      ],
-                    ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("Remaining Votes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                          Text("$remaining", style: TextStyle(fontSize: 45, color: Colors.blue)),
-                        ],
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text("Remaining Votes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                            Text("$remaining", style: TextStyle(fontSize: 45, color: Colors.blue)),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ],
       ),
     );
   }
