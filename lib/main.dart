@@ -40,7 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int totalVotes = 0;
   List<int> votes = List<int>.filled(8, 0);
   List<String> names = List<String>.filled(8, '');
-  List<String> imgs = ["img1.jpg","img1.jpg","img1.jpg","img1.jpg","img2.jpg","img2.jpg","img2.jpg"];
+  List<String> vicenames= List<String>.filled(8, '');
+  List<String> imgs = ["images/c1.jpeg","images/c2.jpeg","images/c3.jpeg","images/c4.jpeg","images/c5.jpeg","images/c6.jpeg","images/c7.jpeg"];
 
   @override
   void initState() {
@@ -54,6 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
       final ref = FirebaseDatabase.instance.ref('/');
       final snapshot = await ref.child('total_votes').get();
       final snapshot2 = await ref.child('candidates').get();
+      final snapshot3 = await ref.child('vice_can').get();
+
       if (snapshot.exists) {
         setState(() {
           totalVotes = snapshot.value as int;
@@ -62,6 +65,8 @@ class _MyHomePageState extends State<MyHomePage> {
       if (snapshot2.exists) {
         setState(() {
           names = snapshot2.value.toString().split(',');
+          vicenames = snapshot3.value.toString().split(',');
+
         });
       } else {
         print('Server Error');
@@ -85,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget tile(String name, int vote, String img) {
+  Widget tile(String name, int vote, String img,String vname) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
       child: Container(
@@ -99,11 +104,11 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(radius: 30, backgroundImage: AssetImage(img)),
+              child: CircleAvatar(radius: 40, backgroundImage: AssetImage(img)),
             ),
             Expanded(
               child: Text(
-                name,
+                "$name\n$vname",
                 style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
@@ -142,14 +147,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                   child: Column(
                     children: List.generate(4, (index) {
-                      return tile(names[index], votes[index], imgs[index]);
+                      return tile(names[index], votes[index], imgs[index],vicenames[index]);
                     }),
                   ),
                 ),
                 Expanded(
                   child: Column(
                     children: List.generate(3, (index) {
-                      return tile(names[index + 4], votes[index + 4], imgs[index + 4]);
+                      return tile(names[index + 4], votes[index + 4], imgs[index + 4],vicenames[index+4]);
                     }),
                   ),
                 ),
