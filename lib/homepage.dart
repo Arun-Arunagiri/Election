@@ -1,8 +1,8 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'firebase_options.dart';
+import 'package:flutter/widgets.dart';
 
 
 class Homepage extends StatefulWidget {
@@ -83,13 +83,15 @@ class _HomepageState extends State<Homepage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 8,right: 12,top: 8,bottom: 8),
               child: CircleAvatar(radius: 40, backgroundImage: AssetImage(img)),
             ),
             Expanded(
-              child: Text(
-                "$name\n$vname",
-                style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+              child: SingleChildScrollView(
+                child: Text(
+                  "$name\n$vname",
+                  style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             Padding(
@@ -114,71 +116,88 @@ class _HomepageState extends State<Homepage> {
     int remaining = totalVotes - voted;
     return  Scaffold(
       backgroundColor: Colors.black87,
-      appBar: AppBar(
-        title: Center(child: Text("ELECTION RESULTS", style: TextStyle(color: Colors.white, fontSize: 30))),
-        backgroundColor: Colors.orangeAccent,
-      ),
-      body: ListView(
-        children:[ Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Column(
-              children: List.generate(7, (index) {
-                return tile(names[index], votes[index], imgs[index],vicenames[index]);
-              }),
+      //
+      body: Column(
+        children:[
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Container(
+              height: 60,
+              width: MediaQuery.sizeOf(context).width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("MOUNT ZION SILVER JUBILEE SCHOOL", style: TextStyle(color: Colors.indigo, fontSize: 13,fontWeight: FontWeight.bold)),
+                  Text("ELECTION RESULT", style: TextStyle(color: Colors.indigo, fontSize: 15,fontWeight: FontWeight.bold)),
+                ],
+              ),
+              decoration: BoxDecoration(
+                color: Colors.orangeAccent
+              ),
             ),
-
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 120,
-                decoration: BoxDecoration(
-                  color: Colors.orangeAccent,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text("Total Votes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                            Text("$totalVotes", style: TextStyle(fontSize: 40, color: Colors.blueGrey)),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Flexible(
+          ),
+          Expanded(
+            child: ListView(
+            // mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Column(
+                children: List.generate(7, (index) {
+                  return tile(names[index], votes[index], imgs[index],vicenames[index]);
+                }),
+              ),
+            ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              // height: MediaQuery.sizeOf(context).height/7,
+              decoration: BoxDecoration(
+                color: Colors.orangeAccent,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text("Voted", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                          Text("$voted", style: TextStyle(fontSize: 40, color: Colors.blueGrey)),
+                          Text("Total Votes", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                          Text("$totalVotes", style: TextStyle(fontSize: 25, color: Colors.blueGrey)),
                         ],
                       ),
                     ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text("Remaining Votes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                            Text("$remaining", style: TextStyle(fontSize: 40, color: Colors.blue)),
-                          ],
-                        ),
+                  ),
+                  Flexible(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("Voted", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                        Text("$voted", style: TextStyle(fontSize: 25, color: Colors.blueGrey)),
+                      ],
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text("Remaining Votes", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                          Text("$remaining", style: TextStyle(fontSize: 25, color: Colors.blue)),
+
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
         ],
       ),
     ); ;
