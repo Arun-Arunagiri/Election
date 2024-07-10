@@ -21,7 +21,7 @@ class _HomepageState extends State<Homepage> {
 
   List<String> vicenames= List<String>.filled(8, '');
 
-  List<String> imgs = ["images/c1.jpeg","images/c2.jpeg","images/c3.jpeg","images/c4.jpeg","images/c5.jpeg","images/c6.jpeg","images/c7.jpeg"];
+  List<String> imgs = ["images/c1.jpeg","images/c2.jpeg","images/c4.jpeg","images/c3.jpeg","images/c5.jpeg","images/c6.jpeg","images/c7.jpeg"];
 
   @override
   void initState() {
@@ -84,7 +84,7 @@ class _HomepageState extends State<Homepage> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 8,right: 12,top: 8,bottom: 8),
-              child: CircleAvatar(radius: 40, backgroundImage: AssetImage(img)),
+              child: Image.asset(img,height: 40,width: 40,),
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -112,7 +112,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    int voted = votes.reduce((a, b) => a + b);
+    int voted = (votes.reduce((a, b) => a + b)/2) as int;
     int remaining = totalVotes - voted;
     return  Scaffold(
       backgroundColor: Colors.black87,
@@ -127,7 +127,7 @@ class _HomepageState extends State<Homepage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("MOUNT ZION SILVER JUBILEE SCHOOL", style: TextStyle(color: Colors.indigo, fontSize: 13,fontWeight: FontWeight.bold)),
+                  Text("MOUNT ZION SILVER JUBILEE SCHOOL", style: TextStyle(color: Colors.indigo, fontSize: 15,fontWeight: FontWeight.bold)),
                   Text("ELECTION RESULT", style: TextStyle(color: Colors.indigo, fontSize: 15,fontWeight: FontWeight.bold)),
                 ],
               ),

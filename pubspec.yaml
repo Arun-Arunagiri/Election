@@ -71,8 +71,8 @@ assets:
   - assets/images/c5.jpeg
   - assets/images/c6.jpeg
   - assets/images/c7.jpeg
-
-
+  - js/plotly_hookup.js
+  - js/plotly-latest.min.js
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
